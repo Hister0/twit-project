@@ -5,6 +5,8 @@ import { UsersModule } from '../users/users.module';
 import { KnexModule } from 'nest-knexjs';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import configurations from '../../configurations';
+import { AuthModule } from "../auth/auth.module";
+import { TokenModule } from "../token/token.module";
 
 @Module({
   imports: [
@@ -17,19 +19,23 @@ import configurations from '../../configurations';
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         config: {
-          client: 'pg',
-          host: configService.get('db_host'),
-          port: configService.get('db_port'),
-          username: configService.get('db_user'),
-          password: configService.get('db_password'),
-          database: configService.get('db_name'),
+          client: 'postgresql',
           synchronize: true,
           autoLoadModels: true,
           models: [],
+          connection: {
+            host: configService.get('db_host'),
+            port: configService.get('db_port'),
+            user: configService.get('db_user'),
+            password: configService.get('db_password'),
+            database: configService.get('db_name'),
+          },
         },
       }),
     }),
     UsersModule,
+    AuthModule,
+    TokenModule
   ],
   controllers: [AppController],
   providers: [AppService],
