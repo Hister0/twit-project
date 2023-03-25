@@ -4,19 +4,20 @@ import { CreateUserDTO } from "../users/dto";
 import { UserLoginDTO } from "./dto";
 import { AuthUserResponse } from "./response";
 import { ApiResponse, ApiTags } from "@nestjs/swagger";
+import { UserResponse } from "../users/response";
 
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @ApiTags('API')
-  @ApiResponse({status: 201, type: CreateUserDTO})
+  @ApiTags('Authentication')
+  @ApiResponse({status: 201, type: UserResponse})
   @Post('register')
-  register(@Body() dto: CreateUserDTO): Promise<CreateUserDTO> {
+  register(@Body() dto: CreateUserDTO): Promise<UserResponse> {
     return this.authService.registerUsers(dto);
   }
 
-  @ApiTags('API')
+  @ApiTags('Authentication')
   @ApiResponse({status: 200, type: AuthUserResponse})
   @Post('login')
   login(@Body() dto: UserLoginDTO): Promise<AuthUserResponse> {

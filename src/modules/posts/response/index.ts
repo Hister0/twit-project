@@ -1,7 +1,7 @@
-import { IsEmail, IsNotEmpty, IsNumber, IsString } from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
+import { IsNotEmpty, IsNumber, IsString } from "class-validator";
 
-export class AuthUserResponse {
+export class PostResponse{
   @ApiProperty()
   @IsNotEmpty()
   @IsNumber()
@@ -9,13 +9,13 @@ export class AuthUserResponse {
   @ApiProperty()
   @IsNotEmpty()
   @IsString()
-  nickname: string
+  title: string
   @ApiProperty()
   @IsNotEmpty()
-  @IsEmail()
   @IsString()
-  email: string
+  message: string
   @ApiProperty()
-  @IsString()
-  token: string
+  @IsNotEmpty()
+  @IsNumber()
+  user_id: number
 }

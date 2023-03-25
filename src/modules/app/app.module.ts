@@ -7,6 +7,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import configurations from '../../configurations';
 import { AuthModule } from "../auth/auth.module";
 import { TokenModule } from "../token/token.module";
+import { PostsModule } from "../posts/posts.module";
 
 @Module({
   imports: [
@@ -35,7 +36,8 @@ import { TokenModule } from "../token/token.module";
     }),
     UsersModule,
     AuthModule,
-    TokenModule
+    TokenModule,
+    PostsModule
   ],
   controllers: [AppController],
   providers: [AppService],

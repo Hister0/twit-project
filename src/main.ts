@@ -13,7 +13,9 @@ async function bootstrap() {
     .setTitle('Twit Project Api')
     .setDescription('Api for my learning project')
     .setVersion('1.0')
-    .addTag('API')
+    .addTag('Authentication')
+    .addTag('Users')
+    .addTag('Posts')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
