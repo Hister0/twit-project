@@ -20,6 +20,22 @@ exports.up = function (knex) {
         .inTable('users')
         .onDelete('CASCADE')
         .onUpdate('CASCADE');
+    })
+    .createTable('comments', (table) => {
+      table.increments('id').primary().notNullable();
+      table.string('message', 255).notNullable();
+      table.integer('post_id', 11).unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('posts')
+        .onDelete('CASCADE')
+        .onUpdate('CASCADE');
+      table.integer('user_id', 11).unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('users')
+        .onDelete('CASCADE')
+        .onUpdate('CASCADE');
     });
 };
 
@@ -28,6 +44,8 @@ exports.up = function (knex) {
  * @returns { Promise<void> }
  */
 exports.down = function (knex) {
-  return knex.schema.dropTable('posts').
-  dropTable('users');
+  return knex.schema
+    .dropTable('comments')
+    .dropTable('posts')
+    .dropTable('users');
 };

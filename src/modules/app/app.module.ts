@@ -8,6 +8,7 @@ import configurations from '../../configurations';
 import { AuthModule } from "../auth/auth.module";
 import { TokenModule } from "../token/token.module";
 import { PostsModule } from "../posts/posts.module";
+import { CommentsModule } from "../comments/comments.module";
 
 @Module({
   imports: [
@@ -37,7 +38,8 @@ import { PostsModule } from "../posts/posts.module";
     UsersModule,
     AuthModule,
     TokenModule,
-    PostsModule
+    PostsModule,
+    CommentsModule
   ],
   controllers: [AppController],
   providers: [AppService],
